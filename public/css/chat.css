@@ -1,0 +1,82 @@
+article{
+    position: absolute;
+    display: flex;
+    visibility: hidden;
+
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+
+    opacity: 0;
+    background-color: white;
+
+    flex-direction: column;
+
+    transition: opacity 350ms;
+  }
+  article.using{
+    visibility: visible;
+    opacity: 1;
+  }
+  .textInput{
+    display: flex;
+    height: 30px;
+    margin: 5px;
+  }
+  #navbar{
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    background-color: #00B7FF;
+    height: 50px;
+  }
+  #chatting{
+    width: 100%;
+    list-style-type: none;
+    padding-left: 14px;
+  }
+  #chatting > li{
+    /*background-color: aquamarine;*/
+  }
+  .flexfill{
+    display: flex;
+    align-self: stretch;
+    overflow-y: scroll;
+    flex: 1;
+
+    padding: 0px;
+    margin: 0px;
+  }
+  .submit{
+    box-sizing: border-box;
+    height: 100%;
+    width: 100px;
+    margin-left: 5px;
+  }
+  #dropDownMenu{
+    position: absolute;
+    top: 50px;
+    right: 0px;
+
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+
+    background-color: #00B7FF;
+    color: white;
+
+    transition: opacity 100ms;
+  }
+  #dropDownMenu.fade{
+    visibility: visible;
+    opacity: 1;
+  }
+  #dropDownMenu > ul{
+    list-style-type: none;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  #dropDownMenu > ul > li > span{
+    cursor: pointer;
+  }

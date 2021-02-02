@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="public/css/style.css">
+    <link rel="stylesheet" href="public/css/chat.css">
+  </head>
+  <body>
+    <!-- 맨처음 닉네임 입력 -->
+    <div class="window">
+      <h1>채팅방 입장</h1>
+      <div>
+        <input type="text" placeholder="15글자 이해의 닉네임" class="wide input" id="nickname" >
+      </div>
+      <div style="margin-top:5px;">
+        <button class="button wide" id="createBtn">create</button>
+      </div>
+      <div>
+        <button class="button wide" id="enterBtn">enter</button>
+      </div>
+      <div>
+        <textarea id="CodeOutPut"></textarea>
+      </div>
+    </div>
+    <!-- 여기서부터 채팅룸... -->
+    <article>
+      <!-- 네비게이션 바 -->
+      <nav id="navbar">
+        <h2 style="margin-left: 10px">welcome to chat room</h2>
+        <img src="public/img/whiteMenu.jpg" width="50px" id="menuBtn">
+      </nav>
+      <!-- 드롭다운 메뉴 -->
+      <div id="dropDownMenu">
+        <ul>
+          <li onclick="nameChange(event)" id="nickNameChange">
+            <span>닉네임 변경하기</span>
+          </li>
+          <hr>
+          <li>
+            <input type="color" id="nicknameColor">
+            <span id="colorChange">닉네임 변경 적용</span>
+          </li>
+        </ul>
+      </div>
+      <!-- 채팅 영역 -->
+      <div class="flexfill">
+        <ul id="chatting"></ul>
+      </div>
+      <!-- 입력 영역 -->
+      <div class="textInput">
+        <input type="text" id="sendInput" class="wide">
+        <button class="button submit" id="sendBtn">전송</button>
+      </div>
+    </article>
+    <!-- 여기서부터 스크립트 -->
+    <script type="module" src="index.js"></script>
+  </body>
+</html>
