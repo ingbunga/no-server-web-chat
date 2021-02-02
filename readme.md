@@ -21,3 +21,5 @@ Local network communication is possible even if you don't use both.
 ## Demo
 
 [https://ingbunga.github.io/no-server-web-chat/index.html](https://ingbunga.github.io/no-server-web-chat/index.html)
+
+sometime connecting to external network isn't working
