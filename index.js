@@ -40,12 +40,53 @@ const CodeOutPut = document.getElementById('CodeOutPut');
 const sendBtn = document.getElementById('sendBtn');
 const menuBtn = document.getElementById('menuBtn');
 
+const config = {
+    iceServers: [
+        { urls: 'stun:global.stun.twilio.com:3478?transport=udp' },
+        {url:'stun:stun01.sipphone.com'},
+        {url:'stun:stun.ekiga.net'},
+        {url:'stun:stun.fwdnet.net'},
+        {url:'stun:stun.ideasip.com'},
+        {url:'stun:stun.iptel.org'},
+        {url:'stun:stun.rixtelecom.se'},
+        {url:'stun:stun.schlund.de'},
+        {url:'stun:stun.l.google.com:19302'},
+        {url:'stun:stun1.l.google.com:19302'},
+        {url:'stun:stun2.l.google.com:19302'},
+        {url:'stun:stun3.l.google.com:19302'},
+        {url:'stun:stun4.l.google.com:19302'},
+        {url:'stun:stunserver.org'},
+        {url:'stun:stun.softjoys.com'},
+        {url:'stun:stun.voiparound.com'},
+        {url:'stun:stun.voipbuster.com'},
+        {url:'stun:stun.voipstunt.com'},
+        {url:'stun:stun.voxgratia.org'},
+        {url:'stun:stun.xten.com'},
+        {
+            url: 'turn:numb.viagenie.ca',
+            credential: 'muazkh',
+            username: 'webrtc@live.com'
+        },
+        {
+            url: 'turn:192.158.29.39:3478?transport=udp',
+            credential: 'JZEOEt2V3Qb0y27GRntt2u2PAYA=',
+            username: '28224511:1379330808'
+        },
+        {
+            url: 'turn:192.158.29.39:3478?transport=tcp',
+            credential: 'JZEOEt2V3Qb0y27GRntt2u2PAYA=',
+            username: '28224511:1379330808'
+        }
+    ]
+}
+
 // 맨 처음 연결하는 코드
 createBtn.onclick = createRoom;
 function createRoom() {
     ME = new SimplePeer({
         initiator: true,
-        trickle: false
+        trickle: false,
+        config
     })
 
     nickname = nickNameField.value;
@@ -55,13 +96,16 @@ function createRoom() {
         return;
     }
 
+    nickNameField.value = '';
+    nickNameField.placeholder = "answer code 입력";
+    enterBtn.remove();
+    createBtn.innerHTML = 'wait...';
+    createBtn.disabled = 'disabled';
     ME.on('signal', data => {
+        createBtn.disabled = false;
+        createBtn.innerHTML = 'CONNECT';
         console.log('SIGNAL', JSON.stringify(data))
         CodeOutPut.innerHTML = 'init code:'+JSON.stringify(data);
-        nickNameField.value = '';
-        nickNameField.placeholder = "answer code 입력";
-        enterBtn.remove();
-        createBtn.innerHTML = 'CONNECT';
         createBtn.onclick = () => {
             ME.signal(nickNameField.value);
             console.log(ME);
@@ -74,6 +118,7 @@ enterBtn.onclick = enterRoom;
 function enterRoom(){
     ME = new SimplePeer({
         trickle: false,
+        config
     });
 
     nickname = nickNameField.value;
